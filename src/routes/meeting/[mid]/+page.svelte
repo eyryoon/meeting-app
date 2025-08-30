@@ -1,5 +1,9 @@
 <script>
+	const p = $props();
+	const mid = p.params.mid;
 </script>
+
+<div>GROUP: {mid}</div>
 
 <div>Select which times you are available</div>
 
