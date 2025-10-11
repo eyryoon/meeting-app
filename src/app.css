@@ -1,3 +1,9 @@
 @import 'tailwindcss';
 /* @plugin '@tailwindcss/typography'; */
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+.bg1 {
+  background: linear-gradient(to bottom right, #e0f2fe, #fef9ff);
+}

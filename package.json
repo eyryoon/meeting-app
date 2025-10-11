@@ -26,6 +26,7 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
-		"@trasherdk/svelte-qrcode": "^0.2.4"
+		"@trasherdk/svelte-qrcode": "^0.2.4",
+		"svelte-boring-avatars": "^1.2.6"
 	}
 }
