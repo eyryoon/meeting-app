@@ -1,0 +1,34 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TimeMesh icon">
+  <defs>
+    <linearGradient id="heat" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="48" height="48" rx="14" fill="white" opacity="0.85"/>
+  <!-- same grid as above -->
+  <g transform="translate(8,8)">
+    <rect x="4"  y="4"  width="8" height="8" rx="2" fill="url(#heat)" opacity="0.20"/>
+    <rect x="16" y="4"  width="8" height="8" rx="2" fill="url(#heat)" opacity="0.30"/>
+    <rect x="28" y="4"  width="8" height="8" rx="2" fill="url(#heat)" opacity="0.40"/>
+    <rect x="40" y="4"  width="8" height="8" rx="2" fill="url(#heat)" opacity="0.25"/>
+
+    <rect x="4"  y="16" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.30"/>
+    <rect x="16" y="16" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.60"/>
+    <rect x="28" y="16" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.80"/>
+    <rect x="40" y="16" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.40"/>
+
+    <rect x="4"  y="28" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.25"/>
+    <rect x="16" y="28" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.70"/>
+    <rect x="28" y="28" width="8" height="8" rx="2" fill="url(#heat)" opacity="1.00"/>
+    <rect x="40" y="28" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.50"/>
+
+    <rect x="4"  y="40" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.15"/>
+    <rect x="16" y="40" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.35"/>
+    <rect x="28" y="40" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.50"/>
+    <rect x="40" y="40" width="8" height="8" rx="2" fill="url(#heat)" opacity="0.30"/>
+
+    <path d="M12 28 L22 36 L38 20" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 28 L22 36 L38 20" fill="none" stroke="black" stroke-opacity=".10" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

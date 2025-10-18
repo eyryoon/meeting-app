@@ -1,50 +1,69 @@
 <script>
-	let meetingName = '';
+	import { onMount } from 'svelte';
 
+	let meetingName = '';
+	let error = '';
 
 	function createMeeting() {
-		let meetings = localStorage.getItem("meetings");
-
-		if(meetings === null) {
-			meetings = [];
-		} else {
-			meetings = JSON.parse(meetings);
+		error = '';
+		const name = meetingName.trim();
+		if (!name) {
+			error = 'Please enter a meeting name.';
+			return;
 		}
 
-		let meeting = {
-			name: meetingName,
+		const raw = localStorage.getItem('meetings');
+		const meetings = raw ? JSON.parse(raw) : [];
+
+		const meeting = {
+			id: Date.now().toString(36),
+			name,
 			submissions: []
-		}
+		};
 
+		localStorage.setItem('meetings', JSON.stringify([...meetings, meeting]));
 
-		localStorage.setItem("meetings", JSON.stringify([...meetings, meeting]));
+		// navigate to /new and attach the created meeting id in sessionStorage for the new page to pick up
+		sessionStorage.setItem('editingMeetingId', meeting.id);
+		window.location.href = '/new';
 	}
+
+	// small UX: focus input on mount
+	let nameInput;
+	onMount(() => nameInput?.focus());
 </script>
 
-<div class="bg1 flex min-h-screen flex-col items-center justify-center bg-cover bg-center space-y-8">
-	<h1 class="text-6xl font-extrabold text-blue-600">
-		AppName
-	</h1>
+<div class="bg1 rounded-lg p-8 shadow-inner">
+	<section class="py-12 text-center">
+		<h1 class="text-5xl leading-tight font-extrabold text-sky-600">Run focused, fair meetings</h1>
+		<p class="mx-auto mt-4 max-w-2xl text-gray-600">
+			Create an agenda, collect anonymous submissions, and get quick results — all in your browser.
+		</p>
+	</section>
 
-	<div class="bg-white border border-gray-200 flex flex-col items-center p-10 rounded shadow-lg max-w-sm w-full">
+	<section class="mx-auto max-w-md rounded-xl border border-gray-100 bg-white p-6 shadow-lg">
+		<label for="meeting-name" class="text-sm font-medium text-gray-700">Meeting name</label>
 		<input
-			type="text"
-			placeholder="Name of your meeting"
+			id="meeting-name"
+			bind:this={nameInput}
 			bind:value={meetingName}
-			class="bg-white w-64 rounded border border-gray-300 px-4 py-2 text-sm"
+			type="text"
+			placeholder="e.g. Weekly retro — Oct 18"
+			class="mt-2 w-full rounded-md border border-gray-200 px-4 py-2 text-sm focus:ring-2 focus:ring-sky-200 focus:outline-none"
+			on:keydown={(e) => e.key === 'Enter' && createMeeting()}
 		/>
 
-		<a href="/new" on:click|preventDefault={() => {
-			if (meetingName.trim()) {
-				createMeeting();
-				window.location.href = "/new";
-			}
-		}}>
+		{#if error}
+			<div class="mt-3 text-sm text-red-600">{error}</div>
+		{/if}
+
+		<div class="mt-6 flex justify-end">
 			<button
-				class="btn mt-6 bg-red-300 text-white px-4 py-2 rounded-md shadow hover:bg-red-400 transition font-semibold"
+				class="inline-flex items-center gap-2 rounded-md bg-sky-500 px-4 py-2 font-semibold text-white transition hover:bg-sky-600"
+				on:click={createMeeting}
 			>
 				Create Meeting
 			</button>
-		</a>
-	</div>
+		</div>
+	</section>
 </div>

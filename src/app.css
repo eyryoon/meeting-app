@@ -1,9 +1,31 @@
 @import 'tailwindcss';
 /* @plugin '@tailwindcss/typography'; */
 @plugin "daisyui" {
-  themes: light --default;
+	themes: light --default;
 }
 
 .bg1 {
-  background: linear-gradient(to bottom right, #e0f2fe, #fef9ff);
+	background: linear-gradient(135deg, rgba(14, 165, 233, 0.06), rgba(253, 244, 255, 0.8));
+	min-height: 60vh;
+}
+
+/* subtle card focus */
+.card-focus:focus {
+	box-shadow: 0 8px 30px rgba(14, 165, 233, 0.08);
+	outline: none;
+}
+
+/* utility: centered container used in layout */
+.container-max {
+	max-width: 64rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+/* small, harmless rule to keep some valid CSS for linters */
+html,
+body {
+	height: 100%;
 }

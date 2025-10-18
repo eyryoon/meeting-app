@@ -1,24 +1,42 @@
 <script>
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
-
-	let { children } = $props();
+	// keep favicon import; layout will use <slot /> for routing content
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<nav
-	class="flex items-center space-x-6 bg-white px-6 py-4 text-sm font-medium text-gray-700 shadow-md"
->
-	<a
-		href="/"
-		class="rounded-md bg-red-300 px-4 py-2 font-semibold text-white shadow transition hover:bg-red-400"
-	>
-		Create New
-	</a>
-	<a href="/history" class="transition hover:text-blue-600">History</a>
-</nav>
+<div class="flex min-h-screen flex-col bg-slate-50">
+	<header class="bg-white/80 shadow-sm backdrop-blur-sm">
+		<div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
+			<a href="/" class="flex items-center gap-3">
+				<img src={favicon} alt="logo" class="h-8" />
+				<span class="text-lg font-extrabold text-sky-600">Meetly</span>
+			</a>
 
-{@render children?.()}
+			<nav class="flex items-center gap-4 text-sm text-gray-700">
+				<a
+					href="/new"
+					class="hidden rounded-md bg-sky-500 px-4 py-2 font-semibold text-white shadow transition hover:bg-sky-600 sm:inline-block"
+				>
+					Create New
+				</a>
+				<a href="/history" class="rounded px-2 py-1 transition hover:bg-gray-100">History</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="flex-grow">
+		<div class="mx-auto max-w-4xl px-6 py-10">
+			<slot />
+		</div>
+	</main>
+
+	<footer class="border-t bg-white/80 py-6">
+		<div class="mx-auto max-w-4xl px-6 text-center text-sm text-gray-500">
+			Built with ❤️ — Keep your meetings moving
+		</div>
+	</footer>
+</div>

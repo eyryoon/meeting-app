@@ -11,6 +11,9 @@ importers:
       '@trasherdk/svelte-qrcode':
         specifier: ^0.2.4
         version: 0.2.4(svelte@5.38.6)
+      svelte-boring-avatars:
+        specifier: ^1.2.6
+        version: 1.2.6
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^6.0.0
@@ -788,6 +791,9 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
+  svelte-boring-avatars@1.2.6:
+    resolution: {integrity: sha512-8+Z1DhsMUVI/V/5ik00Arw0PgbJcMdhTXq3YGqccBc5bYFeceCtMEMB0aWGhi8xFV+0aqZbWvS89Hcj16LlfHA==}
+
   svelte@5.38.6:
     resolution: {integrity: sha512-ltBPlkvqk3bgCK7/N323atUpP3O3Y+DrGV4dcULrsSn4fZaaNnOmdplNznwfdWclAgvSr5rxjtzn/zJhRm6TKg==}
     engines: {node: '>=18'}
@@ -1395,6 +1401,8 @@ snapshots:
       totalist: 3.0.1
 
   source-map-js@1.2.1: {}
+
+  svelte-boring-avatars@1.2.6: {}
 
   svelte@5.38.6:
     dependencies:
