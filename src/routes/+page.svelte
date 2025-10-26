@@ -18,14 +18,15 @@
 		const meeting = {
 			id: Date.now().toString(36),
 			name,
-			submissions: []
+			submissions: [],
+			created: new Date()
 		};
 
 		localStorage.setItem('meetings', JSON.stringify([...meetings, meeting]));
 
 		// navigate to /new and attach the created meeting id in sessionStorage for the new page to pick up
 		sessionStorage.setItem('editingMeetingId', meeting.id);
-		window.location.href = '/new';
+		window.location.href = '/new/' + meeting.id;
 	}
 
 	// small UX: focus input on mount
@@ -33,11 +34,13 @@
 	onMount(() => nameInput?.focus());
 </script>
 
-<div class="bg1 rounded-lg p-8 shadow-inner">
+<div class="rounded-lg p-8">
 	<section class="py-12 text-center">
-		<h1 class="text-5xl leading-tight font-extrabold text-sky-600">Run focused, fair meetings</h1>
+		<h1 class="text-5xl leading-tight font-extrabold text-sky-600">replace with your own text</h1>
+		<p class="mx-auto mt-4 max-w-2xl text-gray-600">replace this with your own text</p>
 		<p class="mx-auto mt-4 max-w-2xl text-gray-600">
-			Create an agenda, collect anonymous submissions, and get quick results — all in your browser.
+			Quick note from Daniel: The functionality now works. So create a link, and visit the link
+			multiple times and submit with different names to fill up the scheduler!
 		</p>
 	</section>
 

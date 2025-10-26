@@ -5,24 +5,20 @@
 	let showPopup = $state(undefined);
 
 	const p = $props();
-	// const mid = p.params.mid;
-	const mid = 'study group';
+	const mid = p.params.mid;
 	let participants = $state([]);
-    let maxIndex = $state(-1);
+	let maxIndex = $state(-1);
 
 	onMount(() => {
-		let meetings = localStorage.getItem('meetings');
-
+		let meetings = JSON.parse(localStorage.getItem('meetings')) || [];
 		if (meetings === null) return;
 
-		meetings = JSON.parse(meetings);
-
-		let meeting = meetings.find((m) => m.name === mid);
+		let meeting = meetings.find((m) => m.id === mid);
 
 		participants = meeting.submissions;
 		console.log(participants);
 
-        getMaxIndex();
+		getMaxIndex();
 	});
 
 	const DAYS = 'Sun,Mon,Tue,Wed,Thu,Fri,Sat'.split(',');
@@ -34,9 +30,8 @@
 		else return hr - 12 + 'PM';
 	}
 
-	function getBorderClasses(submission) {
-		if (submission[showPopup]) return 'border-green-500';
-		else return 'border-red-500';
+	function isAvailable(submission) {
+		return submission[showPopup];
 	}
 
 	function countAvailability(index) {
@@ -76,12 +71,12 @@
 
 		console.log('max is', max);
 
-        for(let i=0; i<ar.length; i++) {
-            if (ar[i] === max) {
-                maxIndex = i;
-                break;
-            }
-        }
+		for (let i = 0; i < ar.length; i++) {
+			if (ar[i] === max) {
+				maxIndex = i;
+				break;
+			}
+		}
 	}
 </script>
 
@@ -143,9 +138,9 @@
 			class:text-gray-300={calculateOpacity(i) === ''}
 			onclick={() => (showPopup = i)}
 		>
-            {#if i == maxIndex}
-                <span class="text-xl mr-1" title="highest availability!">⭐️</span>
-            {/if}
+			{#if i == maxIndex}
+				<span class="mr-1 text-xl" title="highest availability!">⭐️</span>
+			{/if}
 			{toAmPm(Math.floor(i / 7) + 8)}
 		</button>
 	{/each}
@@ -173,13 +168,16 @@
 			<div class="mt-6 flex justify-center gap-2">
 				{#each participants as person}
 					<div class="flex flex-col items-center">
-						<div class={`rounded-full border-4 p-1 ${getBorderClasses(person.submission)}`}>
-							<div class="rounded-full bg-white p-1">
-								<Avatar size={60} name={person.name} variant="beam" />
-							</div>
+						<div
+							class="rounded-full bg-white p-1"
+							class:opacity-25={!isAvailable(person.submission)}
+						>
+							<Avatar size={60} name={person.name} variant="beam" />
 						</div>
+
 						<div class="mt-1 w-[70px] truncate text-center text-xs text-gray-700">
 							{person.name}
+							{isAvailable(person.submission) ? '✅' : '❌'}
 						</div>
 					</div>
 				{/each}

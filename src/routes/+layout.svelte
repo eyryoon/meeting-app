@@ -12,13 +12,12 @@
 	<header class="bg-white/80 shadow-sm backdrop-blur-sm">
 		<div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
 			<a href="/" class="flex items-center gap-3">
-				<img src={favicon} alt="logo" class="h-8" />
-				<span class="text-lg font-extrabold text-sky-600">Meetly</span>
+				<span class="text-lg font-extrabold text-sky-600">Meeting Scheduler</span>
 			</a>
 
 			<nav class="flex items-center gap-4 text-sm text-gray-700">
 				<a
-					href="/new"
+					href="/"
 					class="hidden rounded-md bg-sky-500 px-4 py-2 font-semibold text-white shadow transition hover:bg-sky-600 sm:inline-block"
 				>
 					Create New
@@ -33,10 +32,4 @@
 			<slot />
 		</div>
 	</main>
-
-	<footer class="border-t bg-white/80 py-6">
-		<div class="mx-auto max-w-4xl px-6 text-center text-sm text-gray-500">
-			Built with ❤️ — Keep your meetings moving
-		</div>
-	</footer>
 </div>
